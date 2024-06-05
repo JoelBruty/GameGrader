@@ -6,23 +6,23 @@ import CreateReview from './createReview'
 
 
 function App() {
-  const [user, setUser] = useState(null)
-  const handleLogin = (loggedInUser) => {
-    setUser(loggedInUser)
-  }
+  const [user, setUser] = useState(null);
 
+  const handleLogin = (loggedInUser) => {
+    setUser(loggedInUser);
+  };
   return (
     <div className="App">
-      <h1>Game review app</h1>
-      {user (
+      <h1>Game Review App</h1>
+      {user ? (
         <>
-        <p>Welcome, {user.username}</p>
-        <CreateReview userId={user._id}/>
+          <p>Welcome, {user.username}</p>
+          <CreateReview userId={user._id} />
         </>
       ) : (
         <>
-        <Register />
-        <Login onLogin={handleLogin}/>
+          <Register />
+          <Login onLogin={handleLogin} />
         </>
       )}
     </div>
