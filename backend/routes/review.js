@@ -1,11 +1,12 @@
-const express = require('express')
+const express = require('express');
+const router = express.Router();
+const reviewController = require('../controllers/reviewController');
+const authMiddleware = require('../middleware/auth');
 
-const router = express.Router()
-const reviewController = require('../controllers/reviewController')
+router.post('/create', authMiddleware, reviewController.createReview);
+router.delete('/delete/:id', authMiddleware, reviewController.deleteReview);
+router.patch('/update/:id', authMiddleware, reviewController.updateReview);
+router.get('/get/:id', reviewController.getReview);
+router.get('/all', reviewController.getReviews);
 
-router.post('/create', reviewController.createReview)
-router.delete('/delete/:id', reviewController.deleteReview)
-router.patch('/update/:id', reviewController.updateReview)
-router.get('/get/:id', reviewController.getReview)
-router.get('/all', reviewController.getReviews)
-module.exports = router
+module.exports = router;
