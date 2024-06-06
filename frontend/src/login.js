@@ -9,9 +9,9 @@ function Login ({ onLogin}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:4000/auth/login', formData)
+            const response = await axios.post(`http://localhost:4000/auth/login`, formData)
             if (response.data.userId){
-                const userResponse = await axios.get('http://localhost:4000/user/getprofile/${response.data.userId')
+                const userResponse = await axios.get(`http://localhost:4000/user/getprofile/${response.data.userId}`)
                 onLogin(userResponse.data)
             }
         }
