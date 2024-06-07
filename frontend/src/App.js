@@ -4,9 +4,16 @@ import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
 
+import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState(null);
+
+  const TwitchAuth = async() => {
+    await axios.post('http://localhost:4000/game/twitchauth')
+  }
+
+  TwitchAuth()
 
   const handleLogin = (loggedInUser) => {
     setUser(loggedInUser);
