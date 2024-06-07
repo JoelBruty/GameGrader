@@ -20,6 +20,7 @@ function Register({ onRegister }) {
 
         try {
             const response = await axios.post('http://localhost:4000/auth/register', {
+                username: registerData.username,
                 email: registerData.email,
                 password: registerData.password
             });
