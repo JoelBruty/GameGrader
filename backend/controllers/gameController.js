@@ -6,8 +6,11 @@ exports.searchGames = async (req, res) => {
   const { query } = req.query;
 
   try {
-    let games = await Game.find({ name: new RegExp(query, 'i') });
+    let games = await Game.find({ name: query });
 
+    if (games.length === 0) {
+      games = await Game.find({ name: new RegExp(query, 'i') });
+    }
     if (games.length === 0) {
       const response = await axios.post(
         'https://api.igdb.com/v4/games',
