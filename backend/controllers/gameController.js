@@ -2,7 +2,6 @@ const axios = require('axios');
 const Game = require('../models/Game');
 require('dotenv').config();
 
-  const { query } = req.query;
 exports.twitchAuth = async (req, res) => { //POST http://localhost:4000/game/twitchauth
     try {
         const response = await axios.post(
