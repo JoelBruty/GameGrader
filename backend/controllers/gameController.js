@@ -38,15 +38,33 @@ exports.defaultGames = async (req, res) => { //GET http://localhost:4000/game/se
     }
 };
 
-exports.gameCategories = async (req, res) => { //GET http://localhost:4000/game/search?query=Mario
-    const { query } = req.query;
-
-    //WIP
+exports.gameGenre = async (req, res) => { //GET http://localhost:4000/game/genre?id=8
+    const { id } = req.query;
 
     try {
         const response = await axios.post(
             'https://api.igdb.com/v4/games',
-            `fields name, cover.url; where game.genres = ${query}`,
+            `fields name, cover.url; where genres = ${id};`,
+            {
+                headers: {
+                    'Client-ID': process.env.TWITCH_CLIENT_ID,
+                    'Authorization': `Bearer ${process.env.TWITCH_ACCESS_TOKEN}`,
+                },
+            }
+        );
+
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.genreList = async (req, res) => { //GET http://localhost:4000/game/genrelist
+
+    try {
+        const response = await axios.post(
+            'https://api.igdb.com/v4/genres',
+            `fields *; limit 40; sort id asc;`,
             {
                 headers: {
                     'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -65,8 +83,11 @@ exports.searchGames = async (req, res) => { //GET http://localhost:4000/game/sea
     const { query } = req.query;
 
   try {
-    let games = await Game.find({ name: new RegExp(query, 'i') });
+    let games = await Game.find({ name: query });
 
+    if (games.length === 0) {
+      games = await Game.find({ name: new RegExp(query, 'i') });
+    }
     if (games.length === 0) {
       const response = await axios.post(
         'https://api.igdb.com/v4/games',
