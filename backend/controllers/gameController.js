@@ -38,3 +38,23 @@ exports.searchGames = async (req, res) => {
   }
 };
 
+exports.getGameDetails = async (req, res) => { //GET http://localhost:4000/game/details?id=84920
+    const { id } = req.query;
+
+    try {
+        const response = await axios.post(
+            'https://api.igdb.com/v4/games',
+            `fields id, name, collection.name, genres.name, cover.image_id, involved_companies.company.name, platforms.name, release_dates.human, release_dates.platform.name, release_dates.region, summary, websites.url, websites.trusted, similar_games.name; where id = ${id};`,
+            {
+                headers: {
+                    'Client-ID': process.env.TWITCH_CLIENT_ID,
+                    'Authorization': `Bearer ${process.env.TWITCH_ACCESS_TOKEN}`,
+                },
+            }
+        );
+
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

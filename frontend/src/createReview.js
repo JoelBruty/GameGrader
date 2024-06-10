@@ -11,7 +11,7 @@ function CreateReview({ userId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/review/create', { ...formData, userId });
+      const response = await axios.post('http://localhost:4000/review/create', { ...formData }, { headers: { 'User-id':userId } });
       alert('Review created successfully');
     } catch (error) {
       console.error(error);
