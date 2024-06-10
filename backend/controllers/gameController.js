@@ -2,7 +2,6 @@ const axios = require('axios');
 const Game = require('../models/Game');
 require('dotenv').config();
 
-  const { query } = req.query;
 exports.twitchAuth = async (req, res) => { //POST http://localhost:4000/game/twitchauth
     try {
         const response = await axios.post(
@@ -39,15 +38,33 @@ exports.defaultGames = async (req, res) => { //GET http://localhost:4000/game/se
     }
 };
 
-exports.gameCategories = async (req, res) => { //GET http://localhost:4000/game/search?query=Mario
-    const { query } = req.query;
-
-    //WIP
+exports.gameGenre = async (req, res) => { //GET http://localhost:4000/game/genre?id=8
+    const { id } = req.query;
 
     try {
         const response = await axios.post(
             'https://api.igdb.com/v4/games',
-            `fields name, cover.url; where game.genres = ${query}`,
+            `fields name, cover.url; where genres = ${id};`,
+            {
+                headers: {
+                    'Client-ID': process.env.TWITCH_CLIENT_ID,
+                    'Authorization': `Bearer ${process.env.TWITCH_ACCESS_TOKEN}`,
+                },
+            }
+        );
+
+        res.json(response.data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.genreList = async (req, res) => { //GET http://localhost:4000/game/genrelist
+
+    try {
+        const response = await axios.post(
+            'https://api.igdb.com/v4/genres',
+            `fields *; limit 40; sort id asc;`,
             {
                 headers: {
                     'Client-ID': process.env.TWITCH_CLIENT_ID,
