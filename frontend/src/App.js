@@ -3,8 +3,9 @@ import './App.css';
 import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
-
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './Homepage/Home';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,8 +20,10 @@ function App() {
     setUser(loggedInUser);
   };
   return (
+    <Router>
     <div className="App">
-      <h1>Game Review App</h1>
+      <Home/>
+      
       {user ? (
         <>
           <p>Welcome, {user.username}</p>
@@ -30,9 +33,11 @@ function App() {
         <>
           <Register />
           <Login onLogin={handleLogin} />
+
         </>
       )}
     </div>
+    </Router>
   );
 }
 
