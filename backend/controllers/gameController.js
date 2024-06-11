@@ -112,7 +112,7 @@ exports.searchGames = async (req, res) => { //GET http://localhost:4000/game/sea
     if (games.length === 0) {
       const response = await axios.post(
         'https://api.igdb.com/v4/games',
-        `search "${query}"; fields name, cover.url;`,
+        `search "${query}"; fields name, cover.image_id;`,
         {
           headers: {
             'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -125,7 +125,7 @@ exports.searchGames = async (req, res) => { //GET http://localhost:4000/game/sea
         const newGame = new Game({
           igdbId: gameData.id,
           name: gameData.name,
-          coverUrl: gameData.cover?.url,
+          coverUrl: gameData.cover?.image_id,
         });
         await newGame.save();
         return newGame;
