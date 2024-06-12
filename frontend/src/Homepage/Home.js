@@ -3,11 +3,13 @@ import Navbar from "./Navbar";
 
 const Home = () => {
     return(
-        <Navbar/>
+       <Navbar/>
 
         //popular games
 
         //latest releases
+
+        //recent reviews
     )
 }
 
