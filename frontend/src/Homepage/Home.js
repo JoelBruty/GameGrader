@@ -3,8 +3,6 @@ import Navbar from "./Navbar";
 import '../styles/App.css'; 
 import '../styles/Home.css'; 
 
-import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
 
 const Home = () => {
   const [recentReleases, setRecentReleases] = useState([]);
