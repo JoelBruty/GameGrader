@@ -53,8 +53,10 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
             }
         );
 
+        console.log(response.data);
         const games = response.data.map(game => ({
-            ...game,
+            id: game.id,
+            name: game.name,
             coverUrl: game.cover ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg` : null,
         }));
 
