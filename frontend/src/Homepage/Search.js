@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useState } from "react";
+import './Search.css';
+
 
 
 
@@ -31,9 +33,6 @@ const Search = () => {
     }
 
 
-
-
-
     return (
         <div>
             <Navbar />
@@ -43,7 +42,7 @@ const Search = () => {
                         <div id="input-wrapper">
                             <input type="text"
                                 onChange={(e) => setSearch(e.target.value)}
-                                placeholder="Enter Game"
+                                placeholder="Search"
                                 value={search} />
                             <button type="submit">Search</button>
                         </div>

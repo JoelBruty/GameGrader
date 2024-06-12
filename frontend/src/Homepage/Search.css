@@ -1,0 +1,45 @@
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #searchbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%; 
+    margin: 10px;
+  }
+  
+  #input-wrapper {
+    display: flex;
+    width: 700px;
+  }
+  
+  #input-wrapper input {
+    width: 150%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    background-color: #333;
+  }
+  
+  #input-wrapper button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #333; 
+    color: white;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #input-wrapper button:hover {
+    background-color: #00ff15; 
+    color: black;
+  }
+  
+  
