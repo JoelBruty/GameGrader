@@ -31,7 +31,11 @@ const Home = () => {
                 <div id="recent-releases">
                     {recentReleases.map(game => (
                         <div key={game.id} className="game-card">
-                            {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
+                            {game.coverUrl ? (
+                                <img src={game.coverUrl} alt={game.name} />
+                            ) : (
+                                <div className="placeholder-cover">No Image Available</div>
+                            )}
                             <h3>{game.name}</h3>
                         </div>
                     ))}
