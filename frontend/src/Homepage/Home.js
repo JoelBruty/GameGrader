@@ -31,7 +31,7 @@ const Home = () => {
                 <div id="recent-releases">
                     {recentReleases.map(game => (
                         <div key={game.id} className="game-card">
-                            {game.cover && <img src={game.cover.url} alt={game.name} />}
+                            {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
                             <h3>{game.name}</h3>
                         </div>
                     ))}
