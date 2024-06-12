@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useState } from "react";
-import './styles/search.css'; 
+import '../styles/Search.css'; 
 
 
 const Search = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from "./Navbar";
-import './styles/app.css'; 
-import './styles/home.css'; 
+import '../styles/App.css'; 
+import '../styles/Home.css'; 
 
 const Home = () => {
     const [recentReleases, setRecentReleases] = useState([]);
