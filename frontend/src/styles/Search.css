@@ -1,0 +1,49 @@
+#searchbar {
+    margin: 20px 0;
+}
+
+#input-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#input-wrapper input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid white;
+    background-color: black;
+    color: white;
+}
+
+#input-wrapper button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+#input-wrapper button:hover {
+    background-color: green;
+    color: black;
+}
+
+#results {
+    margin: 20px 0;
+}
+
+#results div {
+    margin: 10px 0;
+}
+
+#results img {
+    width: 150px;
+    height: auto;
+}
+
+#results h3 {
+    margin: 10px 0;
+}
