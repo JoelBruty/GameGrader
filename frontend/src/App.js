@@ -4,9 +4,8 @@ import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
 import axios from 'axios';
-import { BrowserRouter as Router, Routes,Route, Switch, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
-import Navbar from './Homepage/Navbar';
 import Search from './Homepage/Search';
 import Profile from './Homepage/Profile';
 
