@@ -20,19 +20,22 @@ const Home = () => {
 
     fetchRecentReleases();
   }, []);
-
-  return (
+return (
     <>
       <Navbar />
       <div id="main-container">
         <h1>Recent Releases</h1>
         <div id="recent-releases">
-          {recentReleases.map(game => (
-            <div key={game.id} className="game-card">
-              {game.cover && <img src={game.cover.url} alt={game.name} />}
-              <h3>{game.name}</h3>
-            </div>
-          ))}
+          {Array.isArray(recentReleases) ? (
+            recentReleases.map((game) => (
+              <div key={game.id} className="game-card">
+                {game.cover && <img src={game.cover.url} alt={game.name} />}
+                <h3>{game.name}</h3>
+              </div>
+            ))
+          ) : (
+            <p>No recent releases available.</p>
+          )}
         </div>
       </div>
     </>

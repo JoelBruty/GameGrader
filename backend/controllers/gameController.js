@@ -61,10 +61,11 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
         }));
 
         res.json(response.data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+      console.error('Error fetching recent releases:', error);
+      res.status(500).json({ error: error.message });
     }
-};
+  };
 
 exports.gameGenre = async (req, res) => { //GET http://localhost:4000/game/genre?id=8
     const { id } = req.query;
