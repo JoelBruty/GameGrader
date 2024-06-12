@@ -46,3 +46,7 @@ body{
     background-color: #00ff15;
     color: black;
 }
+
+#nav-links img {
+    width: 20px;
+}
