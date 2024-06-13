@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
+import { UserProvider } from './context/userContext';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
@@ -23,6 +24,7 @@ function App() {
     setUser(loggedInUser);
   };
   return (
+    <UserProvider>
     <Router>
       <div className="App">
         <Routes>
@@ -60,6 +62,7 @@ function App() {
         )}
       </div>
     </Router>
+    </UserProvider>
   );
 }
 
