@@ -48,10 +48,10 @@ const Search = () => {
         <div id="recent-releases">
           {games.length > 0 ? (
             games.map((game) => (
-              <div key={game.id} className="game-card">
-                {game.coverUrl && <Link to={`../Game/${game.igdbId}`}><img src={game.coverUrl} alt={game.name} /></Link>}
+                <Link to={`../Game/${game.igdbId}`}><div key={game.id} className="game-card">
+                {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
                 <h3>{game.name}</h3>
-              </div>
+              </div></Link>
             ))
           ) : (
             <p>No results found</p>

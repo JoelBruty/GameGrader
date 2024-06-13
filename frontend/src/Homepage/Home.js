@@ -36,10 +36,10 @@ const Home = () => {
         <div id="recent-releases">
           {recentReleases.length > 0 ? (
             recentReleases.map(game => (
-              <div key={game.id} className="game-card">
-                {game.coverUrl && <Link to={`Game/${game.id}`}><img src={game.coverUrl} alt={game.name}/></Link>}
+              <Link to={`Game/${game.id}`}><div key={game.id} className="game-card">
+                {game.coverUrl && <img src={game.coverUrl} alt={game.name}/>}
                 <h3>{game.name}</h3>
-              </div>
+              </div></Link>
             ))
           ) : (
             <p>No recent releases available.</p>
