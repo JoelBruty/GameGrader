@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from 'react';
 import Navbar from "./Navbar";
 import { useState } from "react";
 import './Search.css';
+
 
 const Search = () => {
   const [games, setGames] = useState([]);
@@ -9,7 +10,7 @@ const Search = () => {
 
   const fetchData = async (query) => {
     try {
-      const response = await fetch(`http://localhost:4000/search?q=${query}`);
+      const response = await fetch(`http://localhost:4000/game/search?query=${encodeURIComponent(query)}`);
       if (!response.ok) {
         throw new Error('Game not found');
       }
@@ -36,7 +37,7 @@ const Search = () => {
               <input
                 type="text"
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
+                placeholder="Search for games..."
                 value={search}
               />
               <button type="submit">Search</button>
@@ -47,7 +48,7 @@ const Search = () => {
           {games.length > 0 ? (
             games.map((game) => (
               <div key={game.id} className="game-card">
-                {game.cover && <img src={`https:${game.cover.url}`} alt={game.name} />}
+                {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
                 <h3>{game.name}</h3>
               </div>
             ))
