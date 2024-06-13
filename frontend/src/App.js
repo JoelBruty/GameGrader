@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './App.css';
 import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
@@ -8,6 +7,7 @@ import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
 import Search from './Homepage/Search';
 import Profile from './Homepage/Profile';
+
 
 function App() {
   const [user, setUser] = useState(null);
