@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
 import './Search.css';
 
@@ -43,11 +44,12 @@ const Search = () => {
             </div>
           </form>
         </div>
-        <div id="search-results">
+        {/* temo */}
+        <div id="recent-releases">
           {games.length > 0 ? (
             games.map((game) => (
               <div key={game.id} className="game-card">
-                {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
+                {game.coverUrl && <Link to={`../Game/${game.igdbId}`}><img src={game.coverUrl} alt={game.name} /></Link>}
                 <h3>{game.name}</h3>
               </div>
             ))

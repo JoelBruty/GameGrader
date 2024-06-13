@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
 import Search from './Homepage/Search';
 import Profile from './Homepage/Profile';
+import Game from './Homepage/Game';
 
 
 function App() {
@@ -36,6 +37,10 @@ function App() {
           <Route
           path='/profile'
           element={<Profile/>}
+          />
+          <Route
+          path='/game/:id'
+          element={<Game/>}
           />
         </Routes>
 

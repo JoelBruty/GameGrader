@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
 import '../styles/App.css'; 
 import '../styles/Home.css'; 
@@ -36,7 +37,7 @@ const Home = () => {
           {recentReleases.length > 0 ? (
             recentReleases.map(game => (
               <div key={game.id} className="game-card">
-                {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
+                {game.coverUrl && <Link to={`Game/${game.id}`}><img src={game.coverUrl} alt={game.name}/></Link>}
                 <h3>{game.name}</h3>
               </div>
             ))
