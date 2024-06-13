@@ -8,5 +8,6 @@ router.delete('/delete/:id', authMiddleware, reviewController.deleteReview);
 router.patch('/update/:id', authMiddleware, reviewController.updateReview);
 router.get('/get/:id', reviewController.getReview);
 router.get('/all', reviewController.getReviews);
+router.get('/game/:id', reviewController.getReviewsGame);
 
 module.exports = router;
