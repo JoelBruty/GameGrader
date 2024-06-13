@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom"
 import Navbar from "./Navbar";
 import './Search.css';
@@ -60,6 +61,9 @@ const Game = () => {
                   <p>Collection: {game.collection}</p>
                   <p><img src={game.coverUrl} width="200px"></img></p>
                   <p>{game.summary}</p>
+                  <br/>
+                  <Link to="/ViewReviews"><button>View reviews</button></Link>
+                  <Link to="/AddReview"><button>Add a review</button></Link>
                 </div>}
             </div>
           ))
