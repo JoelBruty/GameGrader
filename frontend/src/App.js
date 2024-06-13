@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
+import './App.css';
 import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Switch, BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
-import Navbar from './Homepage/Navbar';
 import Search from './Homepage/Search';
 import Profile from './Homepage/Profile';
-import './styles/App.css'
-import './styles/Home.css'
-import './styles/Search.css'
-import './styles/Navbar.css'
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -27,7 +24,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
         <Routes>
           <Route
             path='/'
