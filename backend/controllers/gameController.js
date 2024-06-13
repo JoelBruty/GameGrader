@@ -44,7 +44,7 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
     try {
         const response = await axios.post(
             'https://api.igdb.com/v4/release_dates',
-            `fields game, game.name, game.cover.url, date, human; where date < ${timestamp}; sort date desc;`,
+            `fields game, game.name, game.cover.image_id, game.cover.url, date, human; where date < 1718032113; sort date desc;`,
             {
                 headers: {
                     'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -53,11 +53,20 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
             }
         );
 
+        // console.log(response.data);
+
+        // const games = response.data.map(game => ({
+        //     id: game.id,
+        //     name: game.name,
+        //     coverUrl: game.cover ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg` : null,
+        // }));
+
         res.json(response.data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+      console.error('Error fetching recent releases:', error);
+      res.status(500).json({ error: error.message });
     }
-};
+  };
 
 exports.gameGenre = async (req, res) => { //GET http://localhost:4000/game/genre?id=8
     const { id } = req.query;
