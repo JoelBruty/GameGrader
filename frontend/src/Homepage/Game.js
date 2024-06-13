@@ -20,16 +20,17 @@ const Game = () => {
         const data = await response.json()
 
         const formattedData = data.map(game => ({
-          id: game.id,
-          name: game.name,
-          collection: game.collection.name,
+          id: game.id ? game.id : "Unknown",
+          name: game.name ? game.name : "Unknown",
+          collection: game.collection ? game.collection.name : "N/A",
+          genres: game.genres ? game.genres : null,
           coverUrl: game.cover ? `https://images.igdb.com/igdb/image/upload/t_720p/${game.cover.image_id}.jpg` : null,
-          companies: game.involved_companies,
-          platforms: game.platforms,
-          release_dates: game.release_dates,
-          summary: game.summary,
-          websites: game.websites,
-          similar_games: game.similar_games
+          companies: game.involved_companies ? game.involved_companies : null,
+          platforms: game.platforms ? game.platforms : null,
+          release_dates: game.release_dates ? game.release_dates : null,
+          summary: game.summary ? game.summary : null,
+          websites: game.websites ? game.websites : null,
+          similar_games: game.similar_games ? game.similar_games : null
         }))
 
         setGame(formattedData)
@@ -57,7 +58,8 @@ const Game = () => {
                   <p>ID: {game.id}</p>
                   <p>Game: {game.name}</p>
                   <p>Collection: {game.collection}</p>
-                  <p><img src={game.coverUrl}></img></p>
+                  <p><img src={game.coverUrl} width="200px"></img></p>
+                  <p>{game.summary}</p>
                 </div>}
             </div>
           ))
