@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
-import { UserProvider } from './context/userContext';
+// import { UserProvider } from './context/userContext';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
@@ -24,7 +24,7 @@ function App() {
     setUser(loggedInUser);
   };
   return (
-    <UserProvider>
+    // <UserProvider>
     <Router>
       <div className="App">
         <Routes>
@@ -38,7 +38,7 @@ function App() {
           />
           <Route
           path='/profile'
-          element={<Profile/>}
+          element={<Profile user={user}/>}
           />
           <Route
           path='/game/:id'
@@ -62,7 +62,7 @@ function App() {
         )}
       </div>
     </Router>
-    </UserProvider>
+    // </UserProvider>
   );
 }
 
