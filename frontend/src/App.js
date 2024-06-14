@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
-import './App.css';
 import Register from './register'
 import Login from './login'
 import CreateReview from './createReview'
+// import { UserProvider } from './context/userContext';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes,Route,} from 'react-router-dom';
 import Home from './Homepage/Home';
 import Search from './Homepage/Search';
 import Profile from './Homepage/Profile';
+import Game from './Homepage/Game';
+import Navbar from './Homepage/Navbar';
+
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   const TwitchAuth = async () => {
     await axios.post('http://localhost:4000/game/twitchauth')
@@ -22,8 +25,10 @@ function App() {
     setUser(loggedInUser);
   };
   return (
+    // <UserProvider>
     <Router>
       <div className="App">
+        <Navbar/>
         <Routes>
           <Route
             path='/'
@@ -35,7 +40,11 @@ function App() {
           />
           <Route
           path='/profile'
-          element={<Profile/>}
+          element={<Profile user={user}/>}
+          />
+          <Route
+          path='/game/:id'
+          element={<Game/>}
           />
         </Routes>
 
@@ -55,6 +64,7 @@ function App() {
         )}
       </div>
     </Router>
+    // </UserProvider>
   );
 }
 

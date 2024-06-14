@@ -24,9 +24,9 @@ function Register({ onRegister }) {
                 email: registerData.email,
                 password: registerData.password
             });
-            if (response.data.userId) { //if  a new userId was created 
-                const userResponse = await axios.get(`http://localhost:4000/user/getprofile/${response.data.userId}`) //get their data
-                onRegister(userResponse.data) //pass the newly registered data to Register 
+            if (response.data.userId) { 
+                const userResponse = await axios.get(`http://localhost:4000/user/getprofile/${response.data.userId}`)
+                onRegister(userResponse.data)  
             }
         } catch (error) {
             console.log(error)

@@ -44,7 +44,7 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
     try {
         const response = await axios.post(
             'https://api.igdb.com/v4/release_dates',
-            `fields game, game.name, game.cover.url, date, human; where date < ${timestamp}; sort date desc;`,
+            `fields game, game.name, game.cover.image_id, game.cover.url, date, human; where date < 1718032113; sort date desc;`,
             {
                 headers: {
                     'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -53,11 +53,20 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
             }
         );
 
+        // console.log(response.data);
+
+        // const games = response.data.map(game => ({
+        //     id: game.id,
+        //     name: game.name,
+        //     coverUrl: game.cover ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg` : null,
+        // }));
+
         res.json(response.data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+      console.error('Error fetching recent releases:', error);
+      res.status(500).json({ error: error.message });
     }
-};
+  };
 
 exports.gameGenre = async (req, res) => { //GET http://localhost:4000/game/genre?id=8
     const { id } = req.query;
@@ -100,19 +109,17 @@ exports.genreList = async (req, res) => { //GET http://localhost:4000/game/genre
     }
 };
 
-exports.searchGames = async (req, res) => { //GET http://localhost:4000/game/search?query=Mario
-    const { query } = req.query;
+exports.searchGames = async (req, res) => {
+  const { query } = req.query;
 
   try {
-    let games = await Game.find({ name: query });
+    let games = await Game.find({ name: { $regex: new RegExp(query, 'i') } });
 
-    if (games.length === 0) {
-      games = await Game.find({ name: new RegExp(query, 'i') });
-    }
+
     if (games.length === 0) {
       const response = await axios.post(
         'https://api.igdb.com/v4/games',
-        `search "${query}"; fields name, cover.url;`,
+        `search "${query}"; fields name, cover.image_id; limit 10;`,
         {
           headers: {
             'Client-ID': process.env.TWITCH_CLIENT_ID,
@@ -121,15 +128,21 @@ exports.searchGames = async (req, res) => { //GET http://localhost:4000/game/sea
         }
       );
 
-      games = response.data.map(async gameData => {
+      games = response.data.map(async (gameData) => {
+        const coverUrl = gameData.cover
+          ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${gameData.cover.image_id}.jpg`
+          : null;
+
         const newGame = new Game({
           igdbId: gameData.id,
           name: gameData.name,
-          coverUrl: gameData.cover?.url,
+          coverUrl: coverUrl,
         });
+
         await newGame.save();
         return newGame;
       });
+
       games = await Promise.all(games);
     }
 
@@ -138,6 +151,7 @@ exports.searchGames = async (req, res) => { //GET http://localhost:4000/game/sea
     res.status(500).json({ error: err.message });
   }
 };
+
 
 exports.getGameDetails = async (req, res) => { //GET http://localhost:4000/game/details?id=84920
     const { id } = req.query;
