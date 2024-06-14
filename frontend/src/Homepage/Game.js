@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom"
-import Navbar from "./Navbar";
 import './Search.css';
 
 
@@ -66,7 +65,6 @@ const Game = () => {
   return (
     <div>
       {console.log(game)}
-      <Navbar />
       <div id="main-container">
 
         {game != undefined ? (

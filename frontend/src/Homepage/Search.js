@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from "./Navbar";
 import './Search.css';
 import searchIcon from './images/searchIcon.png'
 
@@ -28,39 +27,37 @@ const Search = () => {
   };
 
 
-    return (
-        <div>
-            <Navbar />
-            <div id="main-container">
-                <div id="searchbar">
-                    <form onSubmit={handleSubmit}>
-                        <div id="input-wrapper">
-                            <input
-                                type="text"
-                                onChange={(e) => setSearch(e.target.value)}
-                                placeholder="Search"
-                                value={search}/>
-                            <button type="submit"><img src={searchIcon}></img></button>
-                      </div>
-                    </form>
-                </div>
+  return (
+    <div>
+      <div id="main-container">
+        <div id="searchbar">
+          <form onSubmit={handleSubmit}>
+            <div id="input-wrapper">
+              <input
+                type="text"
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search"
+                value={search}
+                />
+              <button type="submit"><img src={searchIcon}></img></button>
             </div>
+          </form>
         </div>
-        {/* temo */}
-        <div id="recent-releases">
-          {games.length > 0 ? (
-            games.map((game) => (
-                <Link to={`../Game/${game.igdbId}`}><div key={game.id} className="game-card">
-                {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
-                <h3>{game.name}</h3>
-              </div></Link>
-            ))
-          ) : (
-            <p>No results found</p>
-          )}
-        </div>
-      </div>
-    </div>
+        {/* temo */ }
+  <div id="recent-releases">
+    {games.length > 0 ? (
+      games.map((game) => (
+        <Link to={`../Game/${game.igdbId}`}><div key={game.id} className="game-card">
+          {game.coverUrl && <img src={game.coverUrl} alt={game.name} />}
+          <h3>{game.name}</h3>
+        </div></Link>
+      ))
+    ) : (
+      <p>No results found</p>
+    )}
+  </div>
+      </div >
+    </div >
   );
 };
 

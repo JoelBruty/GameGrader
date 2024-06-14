@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from "./Navbar";
 import '../styles/App.css'; 
 import '../styles/Home.css'; 
 
@@ -30,7 +29,6 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div id="main-container">
         <h1>Recent Releases</h1>
         <div id="recent-releases">

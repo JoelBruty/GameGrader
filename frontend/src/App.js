@@ -9,6 +9,7 @@ import Home from './Homepage/Home';
 import Search from './Homepage/Search';
 import Profile from './Homepage/Profile';
 import Game from './Homepage/Game';
+import Navbar from './Homepage/Navbar';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     // <UserProvider>
     <Router>
       <div className="App">
+        <Navbar/>
         <Routes>
           <Route
             path='/'
