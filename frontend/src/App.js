@@ -29,6 +29,16 @@ function App() {
     <Router>
       <div className="App">
         <Navbar/>
+        {user ? (
+          <>
+            <p>Welcome, {user.username}</p>
+          </>
+        ) : (
+          <>
+            <p>Welcome, Guest</p>
+          </>
+        )}
+        <br/>
         <Routes>
           <Route
             path='/'
@@ -40,28 +50,13 @@ function App() {
           />
           <Route
           path='/profile'
-          element={<Profile user={user}/>}
+          element={<Profile user={user} handleLogin={handleLogin}/>}
           />
           <Route
           path='/game/:id'
-          element={<Game/>}
+          element={<Game user={user} handleLogin={handleLogin}/>}
           />
         </Routes>
-
-
-
-        {user ? (
-          <>
-            <p>Welcome, {user.username}</p>
-            <CreateReview userId={user._id} />
-          </>
-        ) : (
-          <>
-            <Register />
-            <Login onLogin={handleLogin} />
-
-          </>
-        )}
       </div>
     </Router>
     // </UserProvider>

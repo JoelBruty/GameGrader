@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 // import axios from 'axios'
-import '../styles/Profile.css'; // Adjust the path as needed
+import '../styles/Profile.css';
+import Register from '../register';
+import Login from '../login';
+
 // import { useUser } from '../context/userContext';
 
-const Profile = ({ user }) => {
+const Profile = ({ user, handleLogin }) => {
   // const { user } = useUser();
   // const [profileData, setProfileData] = useState(null);
   const [reviews, setReviews] = useState([])
@@ -20,7 +23,7 @@ const Profile = ({ user }) => {
       const reviews = await response.json()
 
       setReviews(reviews)
-      console.log(reviews)
+      // console.log(reviews)
     } catch (error) {
       console.error('Error fetching reviews:', error)
     }
@@ -38,7 +41,7 @@ const Profile = ({ user }) => {
         <div>
           <p>Username: {user.username}</p>
           <p>Joined: {new Date(user.createdAt).toLocaleDateString()}</p>
-          <p>Number of Reviews: {user.reviewCount}</p>
+          {/* <p>Number of Reviews: {user.reviewCount}</p> */}
 
           <h1>My Reviews</h1>
           {reviews != "[]" ? (
@@ -54,8 +57,15 @@ const Profile = ({ user }) => {
           )}
         </div>
       ) : (
-        user._id ? ( <p>Login to view your profile</p> ) : ( <p>Loading profile...</p> )
+        <>
+            <p>Login to view your profile</p>
+            <Login onLogin={handleLogin} />
+            <br/>
+            <p>Don't have a profile yet?</p>
+            <Register />
+        </>
       )}
+
     </div>
   );
 };
