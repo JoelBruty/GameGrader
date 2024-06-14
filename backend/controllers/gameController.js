@@ -44,7 +44,7 @@ exports.recentGames = async (req, res) => { //GET http://localhost:4000/game/rec
     try {
         const response = await axios.post(
             'https://api.igdb.com/v4/release_dates',
-            `fields game, game.name, game.cover.image_id, game.cover.url, date, human; where date < 1718032113; sort date desc;`,
+            `fields game, game.name, game.cover.image_id, game.cover.url, date, human; where date < 1718371445; sort date desc;`,
             {
                 headers: {
                     'Client-ID': process.env.TWITCH_CLIENT_ID,

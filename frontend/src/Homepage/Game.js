@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom"
-import './Search.css';
+import '../styles/Search.css';
+import Register from '../register';
+import Login from '../login';
+import CreateReview from '../createReview';
 
 
-const Game = () => {
+const Game = ({ user, handleLogin }) => {
   const [game, setGame] = useState([])
   const [reviews, setReviews] = useState([])
   const { id } = useParams()
@@ -35,7 +38,7 @@ const Game = () => {
         }))
 
         setGame(formattedData)
-        console.log(data)
+        // console.log(data)
 
       } catch (error) {
         console.error('Error fetching game data:', error)
@@ -80,13 +83,28 @@ const Game = () => {
                   <p>{game.summary}</p>
                   <br />
                   <h1>Reviews</h1>
-                  <Link to="/AddReview"><button>Add a review</button></Link>
+                  {/* <Link to="/AddReview"><button>Add a review</button></Link> */}
+                  {user ? (
+                    <>
+                      <p>Add a review</p>
+                      <CreateReview userId={user._id} gameId={game.id} />
+                    </>
+                  ) : (
+                    <>
+                      <p>Login to add a review</p>
+                      <Login onLogin={handleLogin} />
+                      <br />
+                      <p>Don't have a profile yet?</p>
+                      <Register />
+                    </>
+                  )}
                   {reviews != "[]" ? (
                     reviews.map((review) => (
-                      <div key={review._id}>
-                        <p>{review.rating}</p>
-                        <p>{review.reviewText}</p>
-                        <p>{review.user.username}</p>
+                      <div key={review._id} id="recent-releases">
+                        <p>Rating: {review.rating}</p>
+                        <p>Text: {review.reviewText}</p>
+                        <p>User: {review.user.username}</p>
+                        <p>Date: {review.createdAt}</p>
                       </div>
                     ))
                   ) : (

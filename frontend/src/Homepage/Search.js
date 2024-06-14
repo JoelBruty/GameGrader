@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Search.css';
+import '../styles/Search.css';
 import searchIcon from './images/searchIcon.png'
 
 const Search = () => {
