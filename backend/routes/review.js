@@ -9,5 +9,6 @@ router.patch('/update/:id', authMiddleware, reviewController.updateReview);
 router.get('/get/:id', reviewController.getReview);
 router.get('/all', reviewController.getReviews);
 router.get('/game/:id', reviewController.getReviewsGame);
+router.get('/user/:id', reviewController.getReviewsUser);
 
 module.exports = router;

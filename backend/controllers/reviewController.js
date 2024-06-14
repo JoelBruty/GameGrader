@@ -42,6 +42,15 @@ exports.getReviewsGame = async (req, res) => {
   }
 };
 
+exports.getReviewsUser = async (req, res) => {
+  try {
+    const reviews = await Review.find({ user: req.params.id }).populate('user', 'username');
+    res.json(reviews);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.getReview = async (req, res) => {
   try {
     const review = await Review.findById(req.params.id).populate('user', 'username');

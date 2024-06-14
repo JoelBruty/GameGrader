@@ -12,7 +12,7 @@ import Game from './Homepage/Game';
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   const TwitchAuth = async () => {
     await axios.post('http://localhost:4000/game/twitchauth')
