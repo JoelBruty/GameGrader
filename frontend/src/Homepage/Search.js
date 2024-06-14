@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from "./Navbar";
 import './Search.css';
-
+import searchIcon from './images/searchIcon.png'
 
 const Search = () => {
   const [games, setGames] = useState([]);
@@ -27,22 +27,24 @@ const Search = () => {
     fetchData(search);
   };
 
-  return (
-    <div>
-      <Navbar />
-      <div id="main-container">
-        <div id="searchbar">
-          <form onSubmit={handleSubmit}>
-            <div id="input-wrapper">
-              <input
-                type="text"
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search for games..."
-                value={search}
-              />
-              <button type="submit">Search</button>
+
+    return (
+        <div>
+            <Navbar />
+            <div id="main-container">
+                <div id="searchbar">
+                    <form onSubmit={handleSubmit}>
+                        <div id="input-wrapper">
+                            <input
+                                type="text"
+                                onChange={(e) => setSearch(e.target.value)}
+                                placeholder="Search"
+                                value={search}/>
+                            <button type="submit"><img src={searchIcon}></img></button>
+                      </div>
+                    </form>
+                </div>
             </div>
-          </form>
         </div>
         {/* temo */}
         <div id="recent-releases">

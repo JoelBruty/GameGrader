@@ -40,13 +40,18 @@ body{
 #nav-links a:hover {
     background-color: #00ff15;
     color: black;
+    border-radius: 30px;
+    width: 100px;
 }
 
 #nav-links a:focus{
     background-color: #00ff15;
     color: black;
+    border-radius: 30px;
+    width: 100px;
 }
 
 #nav-links img {
     width: 20px;
 }
+
