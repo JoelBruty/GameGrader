@@ -1,49 +1,63 @@
+
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+#main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #searchbar {
-    margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%; 
+  margin: 10px;
 }
 
 #input-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  width: 700px;
+  position: relative;
 }
 
 #input-wrapper input {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-    border: 1px solid white;
-    background-color: black;
-    color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #9c9a9a;
+  border-radius: 50px;
+  background-color: #333;
+  padding-right: 40px; 
+  width: 100%; 
+  box-sizing: border-box; 
+  color: white; 
 }
 
 #input-wrapper button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-top-right-radius: 50px; 
+  border-bottom-right-radius: 50px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0; 
+  height: 100%; 
+  background: none;
 }
 
 #input-wrapper button:hover {
-    background-color: green;
-    color: black;
+  background-color: #00ff15; 
+  color: black;
 }
 
-#results {
-    margin: 20px 0;
-}
-
-#results div {
-    margin: 10px 0;
-}
-
-#results img {
-    width: 150px;
-    height: auto;
-}
-
-#results h3 {
-    margin: 10px 0;
+#input-wrapper button img {
+  width: 20px;
+  height: 20px; 
 }
