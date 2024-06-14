@@ -21,7 +21,7 @@ body {
   
   /* Navbar Styles */
   #navbar {
-    background-color: #333;
+    background-color: #000000;
     padding: 1em 0;
   }
   
@@ -47,7 +47,7 @@ body {
   }
   
   #nav-links li a:hover {
-    color: #0f0;
+    color: rgb(0, 0, 0);
   }
 
   #main-container {
