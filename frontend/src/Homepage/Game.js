@@ -100,10 +100,11 @@ const Game = ({ user, handleLogin }) => {
                   )}
                   {reviews != "[]" ? (
                     reviews.map((review) => (
-                      <div key={review._id}>
-                        <p>{review.rating}</p>
-                        <p>{review.reviewText}</p>
-                        <p>{review.user.username}</p>
+                      <div key={review._id} id="recent-releases">
+                        <p>Rating: {review.rating}</p>
+                        <p>Text: {review.reviewText}</p>
+                        <p>User: {review.user.username}</p>
+                        <p>Date: {review.createdAt}</p>
                       </div>
                     ))
                   ) : (

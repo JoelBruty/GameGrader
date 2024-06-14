@@ -46,11 +46,11 @@ const Profile = ({ user, handleLogin }) => {
           <h1>My Reviews</h1>
           {reviews != "[]" ? (
             reviews.map((review) => (
-              <div key={review._id}>
-                <p>{review.rating}</p>
-                <p>{review.reviewText}</p>
-                <p>{review.user.username}</p>
-              </div>
+              <div key={review._id} id="recent-releases">
+                <p>Rating: {review.rating}</p>
+                <p>Text: {review.reviewText}</p>
+                <p>Date: {review.createdAt}</p>
+            </div>
             ))
           ) : (
             <p>No reviews</p>
