@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-
+import './Profile.css'; // Adjust the path as needed
+import { useUser } from '../context/userContext';
 
 const Profile = () => {
     const { user } = useUser();
